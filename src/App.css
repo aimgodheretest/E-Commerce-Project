@@ -33,3 +33,10 @@
   background-color: #212529;
   color: white;
 }
+
+.cart-image {
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}

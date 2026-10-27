@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   Navbar,
@@ -7,6 +8,8 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
+
+import Cart from "./components/Cart";
 import "./App.css";
 
 const productsArr = [
@@ -32,7 +35,37 @@ const productsArr = [
   },
 ];
 
+const initialCartElements = [
+  {
+    title: "Colors",
+    price: 100,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+    quantity: 2,
+  },
+  {
+    title: "Black and white Colors",
+    price: 50,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+    quantity: 3,
+  },
+  {
+    title: "Yellow and Black Colors",
+    price: 70,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+    quantity: 1,
+  },
+];
+
 function App() {
+  const [showCart, setShowCart] = useState(false);
+  const [cartElements, setCartElements] = useState(initialCartElements);
+
+  function handleRemoveItem(title) {
+    setCartElements((previousItems) =>
+      previousItems.filter((item) => item.title !== title),
+    );
+  }
+
   return (
     <div className="store">
       <Navbar bg="dark" variant="dark" expand="md">
@@ -50,8 +83,13 @@ function App() {
               <Nav.Link href="#">About</Nav.Link>
             </Nav>
 
-            <Button variant="outline-light" type="button">
-              Cart
+            <Button
+              variant="outline-light"
+              type="button"
+              onClick={() => setShowCart(true)}
+              aria-label={`Open cart, ${cartElements.length} item types`}
+            >
+              Cart ({cartElements.length})
             </Button>
           </Navbar.Collapse>
         </Container>
@@ -84,7 +122,7 @@ function App() {
                       {product.title}
                     </Card.Title>
 
-                    <div className="mt-auto d-flex justify-content-between align-items-center">
+                    <div className="mt-auto d-flex justify-content-between align-items-center gap-2">
                       <span className="fw-semibold">
                         ${product.price.toFixed(2)}
                       </span>
@@ -106,6 +144,13 @@ function App() {
           <h3 className="mb-0">The Generics</h3>
         </Container>
       </footer>
+
+      <Cart
+        show={showCart}
+        onHide={() => setShowCart(false)}
+        cartItems={cartElements}
+        onRemove={handleRemoveItem}
+      />
     </div>
   );
 }
