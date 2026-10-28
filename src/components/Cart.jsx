@@ -1,7 +1,10 @@
+import { useCart } from "../context/CartContext";
 import { Modal, Button, Image, Row, Col } from "react-bootstrap";
 
-function Cart({ show, onHide, cartItems, onRemove }) {
-  const totalAmount = cartItems.reduce(
+function Cart({ show, onHide }) {
+  const { cartElements, removeFromCart } = useCart();
+
+  const totalAmount = cartElements.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
   );
@@ -13,7 +16,7 @@ function Cart({ show, onHide, cartItems, onRemove }) {
       </Modal.Header>
 
       <Modal.Body>
-        {cartItems.length === 0 ? (
+        {cartElements.length === 0 ? (
           <p className="text-center py-4">Your cart is empty.</p>
         ) : (
           <>
@@ -23,7 +26,7 @@ function Cart({ show, onHide, cartItems, onRemove }) {
               <Col xs={4}>QUANTITY</Col>
             </Row>
 
-            {cartItems.map((item) => (
+            {cartElements.map((item) => (
               <Row
                 key={item.title}
                 className="align-items-center border-bottom py-3"
@@ -52,7 +55,7 @@ function Cart({ show, onHide, cartItems, onRemove }) {
                     <Button
                       variant="danger"
                       size="sm"
-                      onClick={() => onRemove(item.title)}
+                      onClick={() => removeFromCart(item.title)}
                     >
                       Remove
                     </Button>

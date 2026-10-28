@@ -1,3 +1,4 @@
+import { useCart } from "./context/CartContext";
 import { useState } from "react";
 import {
   Container,
@@ -58,13 +59,8 @@ const initialCartElements = [
 
 function App() {
   const [showCart, setShowCart] = useState(false);
-  const [cartElements, setCartElements] = useState(initialCartElements);
 
-  function handleRemoveItem(title) {
-    setCartElements((previousItems) =>
-      previousItems.filter((item) => item.title !== title),
-    );
-  }
+  const { addToCart, totalQuantity } = useCart();
 
   return (
     <div className="store">
@@ -87,9 +83,8 @@ function App() {
               variant="outline-light"
               type="button"
               onClick={() => setShowCart(true)}
-              aria-label={`Open cart, ${cartElements.length} item types`}
             >
-              Cart ({cartElements.length})
+              Cart ({totalQuantity})
             </Button>
           </Navbar.Collapse>
         </Container>
@@ -127,7 +122,11 @@ function App() {
                         ${product.price.toFixed(2)}
                       </span>
 
-                      <Button variant="primary" type="button">
+                      <Button
+                        variant="primary"
+                        type="button"
+                        onClick={() => addToCart(product)}
+                      >
                         Add to Cart
                       </Button>
                     </div>
@@ -145,12 +144,7 @@ function App() {
         </Container>
       </footer>
 
-      <Cart
-        show={showCart}
-        onHide={() => setShowCart(false)}
-        cartItems={cartElements}
-        onRemove={handleRemoveItem}
-      />
+      <Cart show={showCart} onHide={() => setShowCart(false)} />
     </div>
   );
 }
