@@ -1,4 +1,5 @@
 import { Routes, Route, NavLink } from "react-router-dom";
+import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import { useCart } from "./context/CartContext";
 import { useState } from "react";
@@ -60,7 +61,7 @@ function App() {
                 Home
               </Nav.Link>
 
-              <Nav.Link as={NavLink} to="/" end>
+              <Nav.Link as={NavLink} to="/store">
                 Store
               </Nav.Link>
 
@@ -81,8 +82,10 @@ function App() {
       </Navbar>
 
       <Routes>
+        <Route path="/" element={<Home />} />
+
         <Route
-          path="/"
+          path="/store"
           element={
             <>
               <header className="store-header text-center">

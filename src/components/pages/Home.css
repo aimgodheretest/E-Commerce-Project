@@ -1,0 +1,123 @@
+.home-hero {
+    background-color: #777777;
+    color: white;
+    padding: 0 1rem 2.75rem;
+}
+
+.home-hero-title {
+    margin: 0 0 2rem;
+    padding-top: 0.25rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 700;
+}
+
+.latest-album-button {
+    display: block;
+    margin: 0 auto 1rem;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    border-radius: 0;
+    font-size: 1.1rem;
+}
+
+.play-button {
+    width: 68px;
+    height: 68px;
+    padding: 0;
+    border-radius: 50%;
+    color: #56ccf2;
+    border-color: #56ccf2;
+    font-size: 1.5rem;
+}
+
+.tours-section {
+    padding: 2rem 0 3.25rem;
+    background-color: white;
+}
+
+.tours-title {
+    margin: 0 0 1rem;
+    text-align: center;
+    color: #111111;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.tour-list {
+    max-width: 735px;
+    margin: 0 auto;
+}
+
+.tour-row {
+    display: grid;
+    grid-template-columns: 70px 155px minmax(0, 1fr) 132px;
+    align-items: center;
+    gap: 12px;
+    min-height: 46px;
+    padding: 6px 8px;
+    border-bottom: 1px solid #222222;
+    color: #777777;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+}
+
+.tour-date {
+    color: #111111;
+}
+
+.buy-tickets-button {
+    width: 132px;
+    background-color: #56ccf2;
+    border-color: #56ccf2;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.buy-tickets-button:hover {
+    background-color: #36b9e3;
+    border-color: #36b9e3;
+    color: white;
+}
+
+.home-footer {
+    padding: 1.5rem 0;
+    background-color: #56ccf2;
+    color: white;
+}
+
+.home-footer h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .home-hero-title {
+        margin-bottom: 1.5rem;
+    }
+
+    .tour-row {
+        grid-template-columns: 65px minmax(0, 1fr) 110px;
+        gap: 8px;
+        font-size: 0.75rem;
+    }
+
+    .tour-city {
+        display: none;
+    }
+
+    .buy-tickets-button {
+        width: 110px;
+        padding: 0.35rem;
+        font-size: 0.65rem;
+    }
+
+    .tour-venue {
+        overflow-wrap: anywhere;
+    }
+}
